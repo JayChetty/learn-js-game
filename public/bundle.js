@@ -49,8 +49,14 @@
 	console.log('lala', heapView);
 	window.onload = function(){
 	  console.log('what is up', heapView);
+	  var editor = CodeMirror.fromTextArea(document.getElementById("stack-input"), {
+	    mode: "javascript",
+	    theme: "default",
+	    value: "function(){return 'anything'}",
+	  });
 	  heapView.canvas = document.getElementById('heap');
 	  stackView.linkButton( document.getElementById('runner') );
+	  stackView.editor = editor;
 	  heapView.render();
 	};
 
@@ -123,12 +129,18 @@
 	module.exports = {
 	  heap: heap,
 	  stackView:null,
+	  editor:null,
 	  linkButton: function(button){
 	    button.onclick = this.run.bind(this);
 	  },
 	  run:function(){
 	    console.log('running')
-	    var item = heapItemFactory({ height:10, width:10, x:70, y:20 });
+
+	    console.log('editor', this.editor);
+	    window.editor = this.editor;
+	    eval(editor.getValue());
+	    console.log('a', a)
+	    var item = heapItemFactory(a);
 	    this.heap.addItem(item);
 	  }
 	}

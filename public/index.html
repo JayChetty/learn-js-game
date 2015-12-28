@@ -3,12 +3,17 @@
 <head>
   <title> Edinburgh Developer School</title>
   <link rel='stylesheet' href='main.css'></link>
+  <link rel='stylesheet' href='code_mirror.css'></link>
+  <script src='code_mirror.js'></script>
+  <script src='code_mirror_js.js'></script>
   <script src='bundle.js'></script>
 </head>
 <body>
   <canvas id='heap'></canvas>
   <div id='stack'>
-    The Stack
+    <textarea id='stack-input'>
+var a = {height:10, width:20, x:4, y:3};
+    </textarea>
     <button id='runner'>Run</button>
   </div>
 </body>
