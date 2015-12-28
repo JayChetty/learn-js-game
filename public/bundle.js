@@ -45,12 +45,12 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var heapView = __webpack_require__(1);
+	var stackView = __webpack_require__(4);
 	console.log('lala', heapView);
 	window.onload = function(){
 	  console.log('what is up', heapView);
 	  heapView.canvas = document.getElementById('heap');
-	  heapView.addItem( { height:10, width:10, x:20, y:20 } );
-	  heapView.addItem( { height:10, width:10, x:70, y:20 } );
+	  stackView.linkButton( document.getElementById('runner') );
 	  heapView.render();
 	};
 
@@ -112,6 +112,26 @@
 	}
 
 	module.exports = heapItemFactory;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var heap = __webpack_require__(2)
+	var heapItemFactory = __webpack_require__(3);
+	module.exports = {
+	  heap: heap,
+	  stackView:null,
+	  linkButton: function(button){
+	    button.onclick = this.run.bind(this);
+	  },
+	  run:function(){
+	    console.log('running')
+	    var item = heapItemFactory({ height:10, width:10, x:70, y:20 });
+	    this.heap.addItem(item);
+	  }
+	}
 
 
 /***/ }
